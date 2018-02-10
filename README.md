@@ -6,20 +6,22 @@ My docker sandbox
 docker pull busybox
 docker run busybox echo "Hello, world!"
 docker run -it sh
-# in the container...exit to leave
+# in the container...'exit' to leave
 
-docker ps -a # list containers
+# list containers
+docker ps -a
+# remove exited containers
 docker rm $(docker ps -a -q -f status=exited)
 
 # pull some images down
 docker pull ubuntu # defaults to latest
-docker pull golang:1.9.4
+docker pull golang:1.9.4 # latest doesn't seem to work...
 
-# see them
+# see images
 docker images
 
-# add a docker image to your images
-docker build -t pladdypants/golang .
+# add a docker image to your images list
+docker build -t pladdypants/golang . # this builds the local Dockerfile in this repo
 
 # run it
 docker run pladdypants/golang
@@ -40,7 +42,9 @@ docker network inspect bridge
 ```
 
 ## Reference
-- Tutorial: https://docker-curriculum.com/
+- Tutorials:
+  - https://docker-curriculum.com/
+  - https://docs.docker.com/get-started/
 - Images: https://hub.docker.com/
 - How Tos:
   - https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
